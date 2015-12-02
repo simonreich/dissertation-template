@@ -1,0 +1,63 @@
+\begin{savequote}[75mm]
+Our freedom can be measured by the number of things we can walk away from.
+\qauthor{Source unknown (attributed to Vernon Howard)}
+\end{savequote}
+
+\chapter{One}
+\label{cha:one}
+
+\section{Notes and Acronyms}
+\label{sec:notes-acronyms}
+
+
+\TODO{You can add todo notes everywhere,}
+Use acronyms, demonstrate abbreviations... \Gls{one}, \gls{two}, \glspl{one}.
+
+\glsreset{one}
+In case you had quite some distance to the last use of an acronym or start a new chapter, you might want to reintroduce it. Use a reset for this and produce another reference to \gls{one}.
+\REMARK{The notes are only visible in internaldraft mode. This additional mode exists to disambiguate to latex standard draft mode, which will replace pictures by rectangles. Additionally, a time stamp at the bottom helps to sort through revisions.}
+
+\begin{figure}[!ht]
+  \centering
+  \includegraphics{figures/UniLogo1.png}
+  \caption{Logo of University Göttingen (1)}
+  \label{fig:logo-1}
+\end{figure}
+
+
+\section{Abbreviations}
+\label{sec:abbreviations}
+
+To cope with the special handling of punctuation, you can help \LaTeX with the xpunctuate package, \ie, prevent extra spaces after abbreviation dots which are misinterpreted as the end of the sentence \etc. For example in etc. without the extra markup, which might produce extra space when the line is filled.
+
+
+\section{Pre-Print Beautification}
+\label{sec:pre-print-beaut}
+
+Only do this if you are sure that nothing changes anymore.\NEEDSCITATION[cite something?]
+
+\begin{enumerate}
+\item Solve all issues (notes, todos, etc.)
+\item Compile without draft notes (otherwise the layout may change).
+\item Check the positioning of all floats (e.g., figures and tables).
+\item Make sure that there are no overfull hboxes. Indicate appropriate word-break positions or change the sentence.
+\item Make sure that there are no single lines or section titles at the end of pages (or single lines at the start...) Use enlargethispage (on both sides of the double page!) to make things fit.
+\item Now make sure that the toc looks nice by application of appropriate addtocontents lines.
+\end{enumerate}
+
+Please consult the comments in definitions.tex, section Layout-Tuning, for further help to get figures and text aligned nicely before final printing.
+
+% Sometimes a (double) page has to be adjusted to
+% prevent ugly paragraph setting.
+% Unluckily, there is no enlargethisdoublepage command,
+% so you might have to do this twice. ;-)
+\enlargethispage{4\baselineskip}
+
+
+%%% Local Variables:
+%%% ispell-local-dictionary: "british"
+%%% coding: utf-8
+%%% mode: latex
+%%% TeX-master: "dissertation"
+%%% TeX-engine: xetex
+%%% End:

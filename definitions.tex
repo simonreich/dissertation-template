@@ -1,0 +1,397 @@
+% This is a conglomerate of various tex files I (Jan-Matthias Braun) merged
+% for my thesis with excerpts from Jeremie Papon's Thesis (https://github.com/jpapon/papon_thesis)
+% which itself was forked of the original Harvard Latex template by Jordan Suchow (suchow@fas.harvard.edu).
+%
+% In case of questions, please contact Jan-Matthias Braun (jan_braun@gmx.net).
+% Otherwise feel free to use this template for your own thesis.
+%
+% Notes
+% (1) This file is intended for use with xelatex, but the corresponding
+%     lines for pdflatex are included as comments.
+% (2) Please consult the comments on Layout-Tuning below.
+% (3) This is the future, and it uses UTF-8, you can directly include
+%     characters like ℝ, with the right definitions (see UTF-8 below).
+%
+% TODO: 
+% (1) This template still uses the old subfigure package.
+%     Please feel inclined to use the subfig package and
+%     send me the patches. :-)
+% (2) The title page has too many things hard coded.
+%     You might have to touch the code.
+% (3) There are lots of other things to do, please fork
+%     and prepare your changes for public access or send
+%     them back to me.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   General Packages
+
+\usepackage{fixltx2e}                 % Obsolete with recent LaTeX distributions
+\usepackage{microtype}                % defaults are protrusion=true,expansion=true
+
+\usepackage{setspace}                 % line-spacing
+\onehalfspace                         % \onehalfspace corresponds to \setstretch{1.2}
+% \doublespace                        % To have more space for corrections.
+
+\usepackage{amsfonts}                 % math packages
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+\usepackage{graphicx}
+\usepackage[vfloat]{floatflt}
+\usepackage{float}
+
+% sidewaysfigure and rotations
+\usepackage[figuresright]{rotating}
+
+% Change the style of pages with huge floats with \thisfloatpagestyle
+% http://tex.stackexchange.com/questions/169908/how-to-set-the-pagestyle-on-the-page-a-particular-float-ends-up-on
+\usepackage{floatpag}
+
+\usepackage{pdflscape}                                   % Set landscape mode for singular pages
+
+\usepackage[numbers, comma, sort&compress]{natbib}       % Plain bibliography style
+
+\usepackage[dvipsnames]{xcolor}
+\usepackage{booktabs}
+\usepackage[final]{pdfpages}
+\usepackage{multirow}
+\usepackage{colortbl}
+\usepackage{paralist}
+\usepackage{units}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   Abbreviations
+
+\usepackage{xpunctuate}                                  % Handle abbreviations properly
+\newcommand{\ie}{i\xperiod{}e\xperiod{}}                 % Define shortcuts for often used abbreviations
+\newcommand{\eg}{e\xperiod{}g\xperiod{}}
+\newcommand{\etc}{etc\xperiod{}}
+\newcommand{\ff}{ff\xperiod{}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   Enable Synctex
+
+% Synctex allows direct switching between positions in the editor and the pdf viewer.
+% For details, see 
+% https://www.math.tu-berlin.de/fileadmin/i26/download/AG_ModNumDiff/FG_NumMath/seminars/toolseminar/ts5invSear.pdf
+% http://tex.stackexchange.com/questions/161797/how-to-configure-emacs-and-auctex-to-perform-forward-and-inverse-search
+\RequirePackage{pdfsync}
+\synctex=1
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   Font selection
+% http://www.macfreek.nl/memory/Fonts_in_LaTeX
+
+
+% Old LaTeX-Style font selection
+%http://tex.stackexchange.com/questions/66949/command-nobreakspace-unavailable-when-switching-to-t1-encoding-under-xelatex
+% Results in:
+% Package	Roman Font	Sans-Serif Font	Monospaced Font	Math Font
+% default	CM Roman	CM Sans Serif	CM Typewriter	≈ CM Roman
+% lmodern	LM Roman	LM Sans Serif	LM Typewriter	
+% palatino	Palatino	Helvetica Courier
+%% Previously \usepackage{lmodern}
+%\usepackage[T1]{fontenc}                                        % For T1 see end of file!
+\usepackage{lato}                                               % Sans serif font
+\usepackage{palatino}                                           % Palatino serif font
+
+\usepackage{fontspec}
+\defaultfontfeatures{Mapping=tex-text}  % For archaic input (e.g. convert -- to en-dash)
+
+%\setmainfont{CMU Serif}                 % Computer Modern Unicode font (Traditional LaTeX fonts)
+%\setmonofont{CMU Typewriter Text}
+%\setsansfont{CMU Sans Serif}
+
+% I have the impression, that Palatino is better to read on paper ... 
+% On screen I prefer something else.
+%\setmainfont[Numbers=OldStyle]{TeX Gyre Pagella}      % Palatino as main font
+%\linespread{1.07}
+\setmainfont[Numbers=OldStyle]{TeX Gyre Termes}        % Times New Roman
+\setsansfont[Numbers=OldStyle]{Lato}
+\setmonofont{Source Code Pro}
+
+% Further examples for font selection: Adventor in variations
+%\setsansfont{\fontspec[Numbers={Proportional,OldStyle}]{TeX Gyre Adventor}}
+%\setsansfont{TeX Gyre Adventor:+onum}
+%\setsansfont[Numbers=OldStyle]{TeX Gyre Adventor}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   Layout-Tuning
+
+\usepackage[bottom]{footmisc}
+% For final paragraph spacing/ragged bottom tuning:
+%\raggedbottom
+%\enlargethispage{\baselineskip}
+% + manual linebreaks
+% See: http://www.latex-community.org/forum/viewtopic.php?f=47&t=10862
+
+
+% To enforce placement of floats two options exist, which do not
+% produce a misplaced \clearpage. Still the behaviour is different.
+% \afterpage delays the float insertion and therefore guarantees
+% that the previous page is filled optimally.
+% \FloatBarrier will keep a possible change in content better served
+% and may leave the previous page partially empty.
+\usepackage{placeins}                       % \FloatBarrier
+\usepackage{afterpage}                      % \afterpage{\clearpage}
+
+\usepackage[scriptsize,hang,tight,sf,bf,nooneline]{subfigure}
+\usepackage[margin=8mm,font=small,                              % Caption tuning
+            labelfont=bf,up,normal]{caption}                    % Indent 8mm, size: small, textbf{figure}
+\renewcommand{\belowcaptionskip}{12pt}                          % Tuning of caption and figure spacing
+\renewcommand{\intextsep}{12pt}
+% \renewcommand{\captionfont}{\small\slshape}                   % Font: small italics
+% \addtokomafont{caption}{\small}                               % Another way to say: small font
+
+% This one leads to quite a lot huge spaces between paragraphs
+% because of excessive page breaks.
+%\RequirePackage[small, md, sc]{titlesec}
+% You need the right font to have nice small caps, though.
+%\setkomafont{sectioning}{\scshape}
+\usepackage[palatino]{quotchap}
+
+%\setsansfont[Numbers=OldStyle]{Lato}
+%\setsansfont[Numbers=OldStyle]{TeX Gyre Adventor}
+%\setkomafont{disposition}{\bfseries\fontspec[Numbers=OldStyle]{TeX Gyre Adventor}}
+\setsansfont[Numbers=OldStyle]{Lato}
+\setkomafont{disposition}{\bfseries\fontspec[Numbers=OldStyle]{Lato}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   Colours
+
+\definecolor{Crimson}{rgb}{0.6471, 0.1098, 0.1882}
+\definecolor{DarkBlue}{rgb}{0.1216, 0.1843, 0.2902}
+\definecolor{Silver}{rgb}{0.5490, 0.5451, 0.5882}
+\definecolor{darkblue}{rgb}{0.1216, 0.1843, 0.44}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   UTF-8 character definitions
+%% Compare http://tex.stackexchange.com/questions/29459/declareunicodecharacter-doesnt-work-for-all-characters
+%% with respect to DeclareUnicodeCharacter
+
+\usepackage{textcomp}
+\usepackage{gensymb}
+\usepackage{newunicodechar}
+
+\newunicodechar{ℝ}{\mathbb{R}}
+\newunicodechar{…}{\ldots}
+\newunicodechar{°}{\degree}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   Draft stage helpers
+
+% For a really nice todo package including colours & listings, see
+% https://tex.stackexchange.com/questions/9796/how-to-add-todo-notes
+\usepackage[colorinlistoftodos,prependcaption,textsize=tiny]{todonotes}
+
+\usepackage{ifthen}
+\usepackage{comment}                 % Allows make comments out of environments
+\usepackage{etoolbox}                % Easy test for empty arguments
+
+%% https://en.wikibooks.org/wiki/LaTeX/Colors
+%% https://en.wikibooks.org/wiki/LaTeX/Macros
+
+%% Variable to control output of title page, additional lists, appendices, etc.
+%% Could be made a package with DeclareOption which alters the variable.
+\newboolean{fulldocument}
+\setboolean{fulldocument}{false}
+
+\newcommand{\onlyinfulldocument}[1]{%       % Suppress output if not in internaldraft mode
+  \ifthenelse{\boolean{fulldocument}}{%
+    #1
+  }{}%
+}%
+
+%% Could be made a package with DeclareOption which alters the variable.
+\newboolean{internaldraft}
+\setboolean{internaldraft}{true}
+
+\newcommand{\onlyindraft}[1]{%       % Suppress output if not in internaldraft mode
+  \ifthenelse{\boolean{internaldraft}}{%
+    #1
+  }{}%
+}%
+
+\ifthenelse{\boolean{internaldraft}} {%
+  \newenvironment{outline}{%
+    \textcolor{MidnightBlue}\bgroup
+    \textbf{Section Outline:}\\
+  }{ \egroup}%
+
+  \newenvironment{itemoutline}{%
+    \textcolor{MidnightBlue}\bgroup
+    \textbf{Section Outline:}\\
+    \begin{itemize}
+  } {%
+    \end{itemize} \egroup
+  }%
+
+} {%
+  \excludecomment{outline}
+  \excludecomment{itemoutline}
+}%
+
+\newcommand{\sidemark}{\onlyindraft{\marginpar{\rule[-3mm]{2mm}{6mm}}}}
+\newcommand{\sideremark}[1]{\onlyindraft{\marginpar{\rule[-7mm]{2mm}{10mm}~\parbox[t]{32mm}{#1}}}}
+\newcommand{\sidenote}[1]{\onlyindraft{\marginpar{#1}}}
+
+
+%\newcommand{\REMARK}[1]{\sideremark{#1}}
+\newcommand{\REMARK}[1]{\onlyindraft{\todo[linecolor=green,backgroundcolor=green!25,bordercolor=green]{#1}}}
+
+%% Marker where I left writing
+\newcommand{\TODO}[1][]{
+  \onlyindraft{%
+    \textcolor{red}{\ldots}%
+    \todo[linecolor=red,backgroundcolor=red!25,bordercolor=red]{%
+      TODO: \ifstrempty{#1}{to be continued}{#1}%
+    }%
+  }%
+}%
+
+%% Marker for additional citations
+\newcommand{\NEEDSCITATIONold}[1][]{
+  \onlyindraft{%
+    \ifstrempty{#1}{%
+      \marginpar{\textcolor{blue}{\rule[-1mm]{1mm}{4mm}}} \footnote{\textcolor{blue}{Citation needed}}%
+    }{%
+      \marginpar{\textcolor{blue}{\rule[-1mm]{1mm}{4mm}}} \footnote{\textcolor{blue}{Citation needed: #1}}%
+    }%
+  }%
+}%
+
+%% Marker for additional citations
+\newcommand{\NEEDSCITATION}[1][]{
+  \onlyindraft{%
+    \todo[linecolor=blue,backgroundcolor=blue!25,bordercolor=blue]{%
+      Citation needed\ifstrempty{#1}{}{: #1}%
+    }%
+  }%
+}%
+
+
+% %%% Draft revision mark at end of every page %%%%%%%%%%%%
+%
+% The AddEverypageHook is used to register the printrev command.
+% An optional parameter allows arbitrary revision tags.
+% \printrev is conditioned on the bool internaldraft.
+% When internaldraft is false, the marker is not printed.
+\usepackage{everypage}
+\usepackage[absolute]{textpos}
+\usepackage{datetime}
+\newcommand\printrev[1]{%
+  \onlyindraft{%
+    \begin{textblock*}{\paperwidth}(0mm,\paperheight-16mm)%
+      \begin{center}%
+        \textit{\footnotesize --- Document rendered on \today{} \currenttime{} #1 ---}%
+      \end{center}%
+    \end{textblock*}%
+  }
+}
+\AddEverypageHook{\printrev{}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   Title page
+% Titlepage and below: courtesy of Jeremie Papon 
+% with modifications by Jan-Matthias Braun
+% For details of forking and changes, please check the header.
+
+% Trying to unstrip the KOMA title page.
+% Although this does not seem to work in any way.
+\newcommand*{\mytitlemargin}{\dimexpr 0mm\relax}
+\renewcommand{\coverpagetopmargin}{\mytitlemargin}
+\renewcommand{\coverpageleftmargin}{\mytitlemargin}
+\renewcommand{\coverpagerightmargin}{\mytitlemargin}
+\renewcommand{\coverpagebottommargin}{2\mytitlemargin}
+
+% some definitions
+\def\title#1{\gdef\title{#1}}
+\def\author#1{\gdef\author{#1}}
+\def\degreeyear#1{\gdef\degreeyear{#1}}
+\def\degreemonth#1{\gdef\degreemonth{#1}}
+\def\degree#1{\gdef\degree{#1}}
+\def\advisor#1{\gdef\advisor{#1}}
+\def\department#1{\gdef\department{#1}}
+\def\field#1{\gdef\field{#1}}
+\def\university#1{\gdef\university{#1}}
+\def\universitycity#1{\gdef\universitycity{#1}}
+\def\universitystate#1{\gdef\universitystate{#1}}
+
+\renewcommand{\maketitle}{%
+  \begin{titlepage}
+  %\singlespacing
+  %\thispagestyle{empty}
+  \begin{flushright}
+  %\vspace*{100pt} 
+%  \vspace*{20pt} 
+  %\vspace*{\fill}
+  \Huge \textcolor{DarkBlue}{\textit{\title}} %\vspace{10pt}
+  \textcolor{Silver}{\rule{\textwidth}{2.0pt}}   
+  ~ \\ %%%
+  \normalsize \normalfont \scshape Dissertation \\ 
+  \vspace{6pt}
+  in order to obtain the doctoral degree\\
+  %in Mathematics and Natural Sciences\\ 
+  "Doctor rerum naturalium" \\
+  %%% \vspace{6pt}
+  of the Georg-August-Universität Göttingen \\
+  \vspace{12pt} %%%
+  \vspace{6pt}
+  in the Doctoral program \\
+  Theoretical and Computational Neuroscience (PTCN) of\\
+  the Georg-August University School of Science (GAUSS) \\
+  \vspace{24pt}
+  \vspace{4pt} %%%
+  submitted by\\
+  \author\\
+  \vspace{12pt} 
+  of Göttingen, Germany\\
+  (place of birth)\\
+  \vspace{36pt}
+  \vspace*{\fill}
+  \includegraphics[width=30mm]{figures/UniLogo1} \\
+  \vspace{12pt} 
+  \university\\ \universitycity, \universitystate\\
+  \degreemonth\ \degreeyear \\
+  \end{flushright}
+  %\vspace*{\fill}
+  \end{titlepage}
+}
+
+\newcommand{\abstractpage}{
+  \newpage
+  %\pagenumbering{roman}
+  %\setcounter{page}{3}
+  \thispagestyle{empty}
+%  \pagestyle{fancy}
+%  \renewcommand{\headrulewidth}{0.0pt}
+  \vspace*{-28mm}
+  \begin{center}
+  \vspace*{1pt} % \huge
+  \LARGE \textcolor{DarkBlue}{\textit{\title}} \\
+  %\vspace*{15pt}
+  \vspace*{9pt}
+  \Large \scshape Abstract \\ \normalfont \rmfamily
+  \end{center}
+  \input{abstract}
+  \newpage
+  %\cfoot{\thepage}
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   Hyperref at the end
+% Funny options by Mr. Papon
+% There is supposed to be a setup command which is 
+% better in terms of encoding issues.
+\RequirePackage[bookmarks, 
+                colorlinks=true, 
+                citecolor=Crimson,
+                filecolor=black,
+                linkcolor=DarkBlue,
+                urlcolor=Crimson,
+                pdfdisplaydoctitle=true,
+                ]{hyperref} 
+
+
+%% Only for T1 text-encoding
+%% Problem: There is no direct translation from Unicode to T1
+%\DeclareTextCommandDefault{\nobreakspace}{\leavevmode\nobreak\ } 

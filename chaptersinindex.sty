@@ -1,0 +1,54 @@
+% Based on so many tutorials and how-tos that I can barely count them all.
+% As things did not work as presented with texlive 2015 and koma script,
+% I ended up reading the docs and reinventing the wheel, so you will 
+% find stancas similar to all the tutorials and how tos...
+%
+% This now is a merger of mine experiments so far with a modified version
+% of 5gon12eder's package from
+% http://www.latex-community.org/forum/viewtopic.php?f=44&t=17344
+%
+% Note, that you have to declare all environments you are using,
+% for example
+%   \AddChaptersToIndex{lof}{figure}
+%   \AddChaptersToIndex{lof}{floatingfigure}
+%   \AddChaptersToIndex{lot}{table}
+%
+% Have fun!
+%
+% Known Problems:
+% Sometimes, the chapter is misplaced in the list. The exact issue is 
+% unclear, but it seems it can be worked around by moving the figure
+% relative to its first reference.
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{chaptersinindex}[2015/09/26]
+
+\RequirePackage{etoolbox}
+
+\providecommand{\thechaptername}{}
+\renewcommand{\chaptermark}[1]
+             {%
+               \markboth{#1}{}%
+               \renewcommand{\thechaptername}{#1}%
+             }
+
+\newcommand{\AddChaptersToIndex}[2]{%  #1: index name (e.g. `lof')
+                                    %  #2: environment to patch (e.g. `figure')
+  %
+  % Provide counter for index (#1)
+  \ifltxcounter{chapter@last@#1}{}{% 
+    % Counter not defined yet
+    \newcounter{chapter@last@#1}%
+  }
+  %
+  % Instrument the environment (#2)
+  \AtBeginEnvironment{#2}{%
+  % \BeforeBeginEnvironment{#2}{%
+    \ifnumequal{\value{chapter}}{\value{chapter@last@#1}}{%
+      % already added 
+    } {% Add to list
+      \addtocontents{#1}{\protect\contentsline {chapter}%
+        {\protect\numberline {\bfseries\thechapter} {\bfseries\thechaptername}}{}{} }%
+      \setcounter{chapter@last@#1}{\value{chapter}}%
+    }
+  }
+}
