@@ -24,20 +24,13 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   General Packages
 
-\usepackage{fixltx2e}                 % Obsolete with recent LaTeX distributions
-\usepackage{microtype}                % defaults are protrusion=true,expansion=true
+\usepackage{calc}                       %% ermoeglicht Rechnen mit Laengen und Zaehlern
+\usepackage{microtype}                  %% defaults are protrusion=true,expansion=true
+\usepackage{quotchap}                   %% Quotation at chapters
+\usepackage{setspace}                   %% line-spacing
+\onehalfspace                           %% \onehalfspace corresponds to \setstretch{1.2}
+% \doublespace                          %% To have more space for corrections.
 
-\usepackage{setspace}                 % line-spacing
-\onehalfspace                         % \onehalfspace corresponds to \setstretch{1.2}
-% \doublespace                        % To have more space for corrections.
-
-\usepackage{amsfonts}                 % math packages
-\usepackage{amssymb}
-\usepackage{amsmath}
-
-\usepackage{graphicx}
-\usepackage[vfloat]{floatflt}
-\usepackage{float}
 
 % sidewaysfigure and rotations
 \usepackage[figuresright]{rotating}
@@ -45,75 +38,58 @@
 % Change the style of pages with huge floats with \thisfloatpagestyle
 % http://tex.stackexchange.com/questions/169908/how-to-set-the-pagestyle-on-the-page-a-particular-float-ends-up-on
 \usepackage{floatpag}
+\usepackage{pdflscape}                  %% Set landscape mode for singular pages
+\usepackage[authoryear,comma,sort&compress]{natbib}  %% Plain bibliography style
+\bibliographystyle{plainnat}
+\usepackage{units}                      %% units package
 
-\usepackage{pdflscape}                                   % Set landscape mode for singular pages
 
-\usepackage[numbers, comma, sort&compress]{natbib}       % Plain bibliography style
 
-\usepackage[dvipsnames]{xcolor}
-\usepackage{booktabs}
-\usepackage[final]{pdfpages}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   For nice looking tables
+\usepackage{booktabs}		            %% Befehle fuer besseres Tabellenlayout
+\usepackage{longtable}		            %% umbrechbare Tabellen
 \usepackage{multirow}
-\usepackage{colortbl}
-\usepackage{paralist}
-\usepackage{units}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   tikz
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows,fit}
+\usepackage{gnuplot-lua-tikz}
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   Abbreviations
 % Handle abbreviations properly
 % This is useful for inline enumerations, e.g., an explicit 1. ...
-\usepackage{xpunctuate}                                  
-\newcommand{\ie}{i\xperiod{}e\xperiod{}}                 % Define shortcuts for often used abbreviations
+\usepackage{xpunctuate}                 %% Define shortcuts for often used abbreviations
+\newcommand{\ie}{i\xperiod{}e\xperiod{}}
 \newcommand{\eg}{e\xperiod{}g\xperiod{}}
 \newcommand{\etc}{etc\xperiod{}}
 \newcommand{\ff}{ff\xperiod{}}
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   Enable Synctex
-
-% Synctex allows direct switching between positions in the editor and the pdf viewer.
-% For details, see 
-% https://www.math.tu-berlin.de/fileadmin/i26/download/AG_ModNumDiff/FG_NumMath/seminars/toolseminar/ts5invSear.pdf
-% http://tex.stackexchange.com/questions/161797/how-to-configure-emacs-and-auctex-to-perform-forward-and-inverse-search
-\RequirePackage{pdfsync}
-\synctex=1
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   Font selection
-% http://www.macfreek.nl/memory/Fonts_in_LaTeX
+% See https://wiki.ubuntuusers.de/XeTeX/
+\usepackage{xltxtra}
 
 
-% Old LaTeX-Style font selection
-%http://tex.stackexchange.com/questions/66949/command-nobreakspace-unavailable-when-switching-to-t1-encoding-under-xelatex
-% Results in:
-% Package	Roman Font	Sans-Serif Font	Monospaced Font	Math Font
-% default	CM Roman	CM Sans Serif	CM Typewriter	≈ CM Roman
-% lmodern	LM Roman	LM Sans Serif	LM Typewriter	
-% palatino	Palatino	Helvetica Courier
-%% Previously \usepackage{lmodern}
-%\usepackage[T1]{fontenc}                                        % For T1 see end of file!
-\usepackage{lato}                                               % Sans serif font
-\usepackage{palatino}                                           % Palatino serif font
-
-\usepackage{fontspec}
-\defaultfontfeatures{Mapping=tex-text}  % For archaic input (e.g. convert -- to en-dash)
-
-%\setmainfont{CMU Serif}                 % Computer Modern Unicode font (Traditional LaTeX fonts)
-%\setmonofont{CMU Typewriter Text}
-%\setsansfont{CMU Sans Serif}
-
+% See http://www.macfreek.nl/memory/Fonts_in_LaTeX
 % I have the impression, that Palatino is better to read on paper ... 
 % On screen I prefer something else.
-%\setmainfont[Numbers=OldStyle]{TeX Gyre Pagella}      % Palatino as main font
-%\linespread{1.07}
-\setmainfont[Numbers=OldStyle]{TeX Gyre Termes}        % Times New Roman
-\setsansfont[Numbers=OldStyle]{Lato}
-\setmonofont{Source Code Pro}
+\setmainfont[Mapping=tex-text, Numbers=OldStyle]{TeX Gyre Pagella}      % Palatino as main font
+%\setmainfont[Numbers=OldStyle]{TeX Gyre Termes}        % Times New Roman
+\setsansfont[Mapping=tex-text, Numbers=OldStyle]{Lato}
+\setmonofont[Mapping=tex-text]{Source Code Pro}
 
-% Further examples for font selection: Adventor in variations
-%\setsansfont{\fontspec[Numbers={Proportional,OldStyle}]{TeX Gyre Adventor}}
-%\setsansfont{TeX Gyre Adventor:+onum}
-%\setsansfont[Numbers=OldStyle]{TeX Gyre Adventor}
+% Large chapter numbers
+\usepackage{fix-cm}
+\usepackage{titlesec}
+\definecolor{gray75}{gray}{0.75}
+\newcommand{\hsp}{\hspace{0pt}}
+\titleformat{\chapter}[hang]{\flushright\fontseries{b}\fontsize{80}{100}\selectfont}{\fontseries{b}\fontsize{100}{130}\selectfont\textcolor{gray75}{\thechapter}\hsp}{0pt}{\break\Huge\bfseries}[]
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   Layout-Tuning
@@ -135,29 +111,22 @@
 \usepackage{placeins}                       % \FloatBarrier
 \usepackage{afterpage}                      % \afterpage{\clearpage}
 
-\usepackage[scriptsize,hang,tight,sf,bf,nooneline]{subfigure}
-\usepackage[margin=8mm,font=small,                              % Caption tuning
-            labelfont=bf,up,normal]{caption}                    % Indent 8mm, size: small, textbf{figure}
-\renewcommand{\belowcaptionskip}{12pt}                          % Tuning of caption and figure spacing
-\renewcommand{\intextsep}{12pt}
+\usepackage{subcaption}
+\usepackage[margin=8mm,font=small,labelfont=bf]{caption}        % Indent 8mm, size: small, textbf{figure}
 % \renewcommand{\captionfont}{\small\slshape}                   % Font: small italics
 % \addtokomafont{caption}{\small}                               % Another way to say: small font
 
-% This one leads to quite a lot huge spaces between paragraphs
-% because of excessive page breaks.
-%\RequirePackage[small, md, sc]{titlesec}
-% You need the right font to have nice small caps, though.
-%\setkomafont{sectioning}{\scshape}
-\usepackage[palatino]{quotchap}
-
-%\setsansfont[Numbers=OldStyle]{Lato}
-%\setsansfont[Numbers=OldStyle]{TeX Gyre Adventor}
-%\setkomafont{disposition}{\bfseries\fontspec[Numbers=OldStyle]{TeX Gyre Adventor}}
-\setsansfont[Numbers=OldStyle]{Lato}
-\setkomafont{disposition}{\bfseries\fontspec[Numbers=OldStyle]{Lato}}
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   Colours
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   Colors
+\definecolor{MidnightBlue}{RGB}{0,0,160} 
+\definecolor{blue1}{RGB}{0,0,160} 
+\definecolor{green1}{RGB}{0,160,0} 
+\definecolor{red1}{RGB}{160,0,0} 
+\definecolor{orange1}{RGB}{229,92,0} 
+\definecolor{blue120}{RGB}{204,204,236} 
+\definecolor{green120}{RGB}{204,236,204} 
+\definecolor{red120}{RGB}{236,204,204} 
 
 \definecolor{Crimson}{rgb}{0.6471, 0.1098, 0.1882}
 \definecolor{DarkBlue}{rgb}{0.1216, 0.1843, 0.2902}
@@ -168,6 +137,9 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   UTF-8 character definitions
 %% Compare http://tex.stackexchange.com/questions/29459/declareunicodecharacter-doesnt-work-for-all-characters
 %% with respect to DeclareUnicodeCharacter
+\usepackage{amsfonts}                   %% math packages
+\usepackage{amssymb}
+\usepackage{amsmath}
 
 \usepackage{textcomp}
 \usepackage{gensymb}
@@ -176,6 +148,7 @@
 \newunicodechar{ℝ}{\mathbb{R}}
 \newunicodechar{…}{\ldots}
 \newunicodechar{°}{\degree}
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   Draft stage helpers

@@ -19,7 +19,7 @@ In case you had quite some distance to the last use of an acronym or start a new
 
 \begin{figure}[!ht]
   \centering
-  \includegraphics{figures/UniLogo1.png}
+  \includegraphics[width=0.5\textwidth]{figures/UniLogo1.png}
   \caption{Logo of University Göttingen (1)}
   \label{fig:logo-1}
 \end{figure}
@@ -29,6 +29,20 @@ In case you had quite some distance to the last use of an acronym or start a new
 \label{sec:abbreviations}
 
 To cope with the special handling of punctuation, you can help \LaTeX with the xpunctuate package, \ie, prevent extra spaces after 1\xperiod{}~abbreviation dots which are misinterpreted as the end of the sentence \etc. For example in etc. without the extra markup, which might produce extra space when the line is filled. 2.~After inline enumerations, which might break the sentence-structure with the same over-wide spaces otherwise.
+
+
+\section{Citations}
+\label{sec:citations}
+
+Via bibtex and natbib you can cite as:
+
+\begin{itemize}
+  \item \textbackslash cite\{aksoy2012semantic\}: \cite{aksoy2012semantic}
+  \item \textbackslash citep\{aksoy2012semantic\}: \citet{aksoy2012semantic}
+  \item \textbackslash citet\{aksoy2012semantic\}: \citep{aksoy2012semantic}
+  \item \textbackslash citealt\{aksoy2012semantic\}: \citealt{aksoy2012semantic}
+  \item \textbackslash citealp\{aksoy2012semantic\}: \citealp{aksoy2012semantic}
+\end{itemize}
 
 
 \section{Pre-Print Beautification}
@@ -56,7 +70,7 @@ Please consult the comments in definitions.tex, section Layout-Tuning, for furth
 
 
 %%% Local Variables:
-%%% ispell-local-dictionary: "british"
+%%% ispell-local-dictionary: "en_US"
 %%% coding: utf-8
 %%% mode: latex
 %%% TeX-master: "dissertation"

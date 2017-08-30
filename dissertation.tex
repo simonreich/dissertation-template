@@ -9,29 +9,34 @@
 %% http://www.webmasterpro.de/design/article/typografie-12-wichtige-grundlagen-fuer-den-richtigen-einsatz-von-schriften.html
 \documentclass[
     xetex,
-    a4paper,fleqn,12pt,
-    % twoside,openright,         %% two sided (book), open chapters on the right hand side
+    a4paper,
+    fleqn,                      %% flush left equations
+    12pt,
+    % twoside,openright,        %% two sided (book), open chapters on the right hand side
     % twocolumn,
-    BCOR10mm, DIV=calc,        %% 10mm for binding, keep around 12 words/line
+    BCOR10mm, DIV=calc,         %% 10mm for binding, keep around 12 words/line
     % DIV=classic,
     % titlepage,
     % draft
-    bibtotoc,
-    listof=totoc,
     titlepage=firstiscover,
-    parskip=half
+    parskip=half,
+    english
 ]{scrbook}
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   Language Selection
 % Language selection for XeLaTeX (replaces babel)
 \usepackage{polyglossia}
-\setdefaultlanguage{british}
+\setdefaultlanguage{english}
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   General Configuration
 \input{definitions.tex}             % This should become a class...
 \setboolean{internaldraft}{true}    % Notes and Remarks
-\setboolean{fulldocument}{true}     % Include title page
+\setboolean{fulldocument}{false}    % Lists, title page ...
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   Chapter names in lists
@@ -42,49 +47,29 @@
 %\AddChaptersToIndex{lot}{table}
 
 
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   PDF-Metadata
 % It is assumed best practise to configure hyperref
 % with the setup statement. (In the literature...)
 \hypersetup{
-    pdftoolbar=true,        % show Acrobat’s toolbar?
-    pdfmenubar=true,        % show Acrobat’s menu?
-    pdffitwindow=false,     % window fit to page when opened
-    pdfstartview={Fit},    % fits the page to the window
-    pdftitle={Adaptable Orthosis Control with Aritficial Neural Networks},      % title
-    pdfauthor={Jan-Matthias Braun},     % author
-    pdfsubject={Dissertation},   % subject of the document
+    pdftoolbar=true,            %% show Acrobat’s toolbar?
+    pdfmenubar=true,            %% show Acrobat’s menu?
+    pdffitwindow=false,         %% window fit to page when opened
+    pdfstartview={Fit},         %% fits the page to the window
+    pdftitle={Adaptable Orthosis Control with Aritficial Neural Networks},  %% title
+    pdfauthor={Simon Reich},    %% author
+    pdfsubject={Dissertation},  %% subject of the document
     %pdfcreator={Jan-Matthias Braun},   % creator of the document
     %pdfproducer={Jan-Matthias Braun}, % producer of the document
     %pdfkeywords={Green Networking} {Mobile Cloud} {Network Coding} {Energy}, % list of keywords
     pdfnewwindow=true,      % links in new window
-    %hidelinks=true,         % for printing: turn link colours off
+    hidelinks=true,         % for printing: turn link colours off
 }
 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   PDF-Archive Formats
-%% For advanced pdf features, it seems advised to use pdfx.
-%% It allows to create archive-variants
-%% a for archive, x for printing.
-% http://tex.stackexchange.com/questions/87912/add-metadata-in-pdf-as-type-pdf-a
-% http://ctan.sciserv.eu/macros/latex/contrib/pdfx/pdfx.pdf
-% http://www.mathstat.dal.ca/~selinger/pdfa/
-%\usepackage[x-1b]{pdfx}
-
-%% For pdfx, the metadata is supplied in a file.
-%% This file can be supplied inline via the filecontents package.
-%\usepackage{filecontents}
-%\begin{filecontents*}{\jobname.xmpdata}
-%\Keywords{pdfTeX\sep PDF/X-1a\sep PDF/A-b}
-%\Title{Sample LaTeX input file}
-%\Author{LaTeX project team}
-%\Org{TeX Users Group}
-%\Doi{123456789}
-%\end{filecontents*}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   Glossaries
 \usepackage[acronym,nonumberlist,nomain,toc]{glossaries}
-\setacronymstyle{long-sc-short}
 \makeglossaries
 \loadglsentries{acronyms}
 
@@ -98,21 +83,24 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   Document start
 \begin{document}
 
+
 %% Kein Bedarf an unnötigem Titel-Bla-Bla zum jetztigen Zeitpunkt.
-\onlyinfulldocument{
+\onlyindraft{
   \input{vorspann.tex}
 }
 
+
 \tableofcontents
+
 
 \printglossary[type=\acronymtype,
                title=List of Acronyms,
                toctitle=Terms and Abbreviations]
 
-\onlyinfulldocument{      % Use this to remove preambles
-  \listoffigures
-  \listoftables
-}
+\listoffigures
+\listoftables
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%
@@ -124,7 +112,6 @@
 \onehalfspace
 
 \input{chapter_one.tex}
-\addtocontents{toc}{\protect\pagebreak[4]}   % Beautify the toc with 
                                              % forced pagebreaks.
 \input{chapter_two.tex}
 
@@ -135,8 +122,7 @@
 %%%
 %\bibliographystyle{apalike}
 %\addcontentsline{toc}{chapter}{References}
-\bibliographystyle{plainnat}
-\bibliography{bibliography.bib}
+\bibliography{literature}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -157,7 +143,7 @@
 \end{document}
 
 %%% Local Variables:
-%%% ispell-local-dictionary: "british"
+%%% ispell-local-dictionary: "en_US"
 %%% coding: utf-8
 %%% mode: latex
 %%% TeX-master: "dissertation"
