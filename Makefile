@@ -15,6 +15,8 @@ subdirs:
 	#+make -C methods
 
 dissertation.pdf: *.tex subdirs
+	@n=`cat counter.dat`; let n+=1; echo "$$n" > counter.dat
+	@n=`cat counter.dat`; echo "Build Nr $$n on `date`"; echo " "
 	#  -silent
 	latexmk -xelatex dissertation.tex
 

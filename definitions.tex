@@ -226,17 +226,6 @@
 }%
 
 %% Marker for additional citations
-\newcommand{\NEEDSCITATIONold}[1][]{
-  \onlyindraft{%
-    \ifstrempty{#1}{%
-      \marginpar{\textcolor{blue}{\rule[-1mm]{1mm}{4mm}}} \footnote{\textcolor{blue}{Citation needed}}%
-    }{%
-      \marginpar{\textcolor{blue}{\rule[-1mm]{1mm}{4mm}}} \footnote{\textcolor{blue}{Citation needed: #1}}%
-    }%
-  }%
-}%
-
-%% Marker for additional citations
 \newcommand{\NEEDSCITATION}[1][]{
   \onlyindraft{%
     \todo[linecolor=blue,backgroundcolor=blue!25,bordercolor=blue]{%
@@ -259,7 +248,7 @@
   \onlyindraft{%
     \begin{textblock*}{\paperwidth}(0mm,\paperheight-16mm)%
       \begin{center}%
-        \textit{\footnotesize --- Document rendered on \today{} \currenttime{} #1 ---}%
+        \textit{\footnotesize --- Document rendered on \today{} \currenttime{} #1 --- Build \#\input{counter.dat} ---}%
       \end{center}%
     \end{textblock*}%
   }
