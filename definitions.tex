@@ -242,6 +242,15 @@
   }%
 }%
 
+%% Marker for additional citations for float environments
+\newcommand{\NEEDSCITATIONf}[1][]{
+  \onlyindraft{%
+    \todo[linecolor=blue,backgroundcolor=blue!25,bordercolor=blue,inline]{%
+      Citation needed\ifstrempty{#1}{}{: #1}%
+    }%
+  }%
+}%
+
 
 % %%% Draft revision mark at end of every page %%%%%%%%%%%%
 %
