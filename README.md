@@ -1,14 +1,27 @@
-Introduction
+Copyright
 ============
 
-This is a wild mix of several own documents, additional fragments of the internet, and all intermignled with excerpts from Jeremie Papon's thesis.
-This is a fork of the original Harvard Latex template by Jordan Suchow (suchow@fas.harvard.edu). 
-In case of questions, please contact Jan-Matthias Braun (jan_braun@gmx.net).
-Otherwise feel free to use this template for your own thesis.
+Original Version by Jordan Suchow (suchow@fas.harvard.edu)
+https://github.com/suchow/dissertate
+Copyright for portions of this template are held by Jordan Suchow, 2014 as part of project dissertate.
 
-### Notes ###
-1. This file is intended for use with xelatex, but the corresponding
-   lines for pdflatex are included as comments.
+Forked by Jeremie Papon 2014 (jpapon@gmail.com)
+https://github.com/jpapon/papon_thesis
+Copyright for portions of this template are held by Jeremie Papon, 2014 as part of project papon_thesis.
+
+Forked by Jan-Matthias Braun 2016 (jan_braun@gmx.net)
+https://git.physik3.gwdg.de/jbraun2/dissertation-template
+Copyright for portions of this template are held by Jan-Matthias Braun, 2016 as part of project dissertation-template.
+
+Forked by Simon Reich, 2018 (sreich@gwdg.de)
+https://github.com/simonreich/dissertation-template
+All other copyright for this project are held by Simon Reich, 2018.
+
+
+Notes
+=====
+
+1. This file is intended for use with xelatex.
 
 2. Please consult the comments on Layout-Tuning below.
 
@@ -29,9 +42,9 @@ Otherwise feel free to use this template for your own thesis.
 Getting Started
 ===============
 
-Adapt the vorspann.tex to your name and title. If everything is set
-to your liking, set fulldocument to false, to remove all the title
-page cruft from your document for writing.
+Adapt dissertation.tex and frontmatter/*.tex to your name and title. If 
+everything is set to your liking, set fulldocument to false, to remove all 
+the title page cruft from your document for writing.
 
 
 Document Generation
@@ -45,7 +58,8 @@ or web download.
 Therefore, the makefile can generate other versions, better suited for their
 specialised use case. The all rule will generate them.
 
-### Print Version ###
+Print Version
+=============
 
 Depending on the mixture of used fonts in embedded pdfs, characters can be
 missing in the final print. This error was never observed in onscreen
@@ -53,7 +67,10 @@ viewers. Use the rule for dissertation-rewritten.pdf to get a version with
 consistent fonts. In my case, this led to a reduction in pdf size to one
 third and all characters visible on paper.
 
-### Web Version ###
+Please note that there is also the printversion option for the phd-goe class.
+
+Web Version
+===========
 
 For online view, a "linearised" pdf allows to view the contents while the
 pdf is still downloading. When publishing your thesis in the web, this
