@@ -4,10 +4,13 @@ Copyright
 Original Version by Jordan Suchow (suchow@fas.harvard.edu)
 https://github.com/suchow/dissertate
 Copyright for portions of this template are held by Jordan Suchow, 2014 as part of project dissertate.
+The MIT License (MIT)
 
 Forked by Jeremie Papon 2014 (jpapon@gmail.com)
 https://github.com/jpapon/papon_thesis
 Copyright for portions of this template are held by Jeremie Papon, 2014 as part of project papon_thesis.
+Creative Commons Attribution-NonCommercial International License 4.0
+
 
 Forked by Jan-Matthias Braun 2016 (jan_braun@gmx.net)
 https://git.physik3.gwdg.de/jbraun2/dissertation-template
@@ -16,7 +19,7 @@ Copyright for portions of this template are held by Jan-Matthias Braun, 2016 as 
 Forked by Simon Reich, 2018 (sreich@gwdg.de)
 https://github.com/simonreich/dissertation-template
 All other copyright for this project are held by Simon Reich, 2018.
-
+Creative Commons Attribution-NonCommercial International License 4.0
 
 Notes
 =====

@@ -1,104 +1,159 @@
-%% There are no requirements on font size, line spacing and stuff.
-%% KOMA uses type area. General guidelines on good readability aim for:
-%%      10 to 12 Words/Line, ca 60-70 Characters / Line
-%% This should be the default of KOMA's typearea with DIV=calc.
-%% BCOR is the binding correction. Update BCOR for final binding!
-%%
-%% Further readings:
-%% documentation -> lb2-ch4.pdf
-%% http://www.webmasterpro.de/design/article/typografie-12-wichtige-grundlagen-fuer-den-richtigen-einsatz-von-schriften.html
 \documentclass[
-    xetex,
-    a4paper,
-    fleqn,                      %% flush left equations
-    12pt,
-    % twoside,openright,        %% two sided (book), open chapters on the right hand side
-    % twocolumn,
-    BCOR10mm, DIV=calc,         %% 10mm for binding, keep around 12 words/line
-    % DIV=classic,
-    % titlepage,
-    % draft
-    titlepage=firstiscover,
-    parskip=half,
-    english
-]{scrbook}
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   Language Selection
-% Language selection for XeLaTeX (replaces babel)
-\usepackage{polyglossia}
-\setdefaultlanguage{english}
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   General Configuration
-\input{definitions.tex}             % This should become a class...
-\setboolean{internaldraft}{true}    % Notes and Remarks
-\setboolean{fulldocument}{false}    % Lists, title page ...
+  internaldraft,     % Includes notes, remarks, and todos.
+  fulldocument,      % Includes front matter and end matter.
+  %printversion,      % Removes colors from hyperlinks
+]{phd-goe}
 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   Chapter names in lists
+
 \usepackage{chaptersinindex}
 
 \AddChaptersToIndex{lof}{figure}
 \AddChaptersToIndex{lof}{floatingfigure}
-%\AddChaptersToIndex{lot}{table}
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   PDF-Metadata
-% It is assumed best practise to configure hyperref
-% with the setup statement. (In the literature...)
-\hypersetup{
-    pdftoolbar=true,            %% show Acrobat’s toolbar?
-    pdfmenubar=true,            %% show Acrobat’s menu?
-    pdffitwindow=false,         %% window fit to page when opened
-    pdfstartview={Fit},         %% fits the page to the window
-    pdftitle={Adaptable Orthosis Control with Aritficial Neural Networks},  %% title
-    pdfauthor={Simon Reich},    %% author
-    pdfsubject={Dissertation},  %% subject of the document
-    %pdfcreator={Jan-Matthias Braun},   % creator of the document
-    %pdfproducer={Jan-Matthias Braun}, % producer of the document
-    %pdfkeywords={Green Networking} {Mobile Cloud} {Network Coding} {Energy}, % list of keywords
-    pdfnewwindow=true,      % links in new window
-    hidelinks=true,         % for printing: turn link colours off
-}
-
+\AddChaptersToIndex{lot}{table}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   Glossaries
+
 \usepackage[acronym,nonumberlist,nomain,toc]{glossaries}
 \makeglossaries
 \loadglsentries{acronyms}
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   You need a watermark?
-%\onlyindraft{
-%  \watermark {DRAFT COPY ONLY}
-%}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   Font and symbol stuff
 
+%% Compare http://tex.stackexchange.com/questions/29459/declareunicodecharacter-doesnt-work-for-all-characters
+%% with respect to DeclareUnicodeCharacter
+\usepackage{amsfonts}                 %% math packages
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{bm}                       %% bold symbols
+
+\usepackage{textcomp}
+\usepackage{gensymb}
+\usepackage{newunicodechar}
+\usepackage{units}
+
+\newunicodechar{ℝ}{\mathbb{R}}
+\newunicodechar{…}{\ldots}
+
+% differential d
+\newcommand{\Di}[0]{{\textrm d}}
+
+% partial d
+\newcommand{\p}[0]{{\partial}}
+
+\newcommand{\xmark}{\text{\sffamily -}}
+\newcommand{\Xmark}{\text{\sffamily X}}
+\newcommand{\nmark}{n}
+
+\onehalfspace                           %% \onehalfspace corresponds to \setstretch{1.2}
+% \doublespace                          %% To have more space for corrections.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   Figures
+
+% sidewaysfigure and rotations
+\usepackage[figuresright]{rotating}
+
+% Set landscape mode for singular pages
+\usepackage{pdflscape}
+
+% Subfigure
+\usepackage{subcaption}
+
+% Indent 8mm, size: small, textbf{figure}
+\usepackage[margin=8mm,font=small,labelfont=bf]{caption}
+
+
+% To enforce placement of floats two options exist, which do not
+% produce a misplaced \clearpage. Still the behaviour is different.
+% \afterpage delays the float insertion and therefore guarantees
+% that the previous page is filled optimally.
+% \FloatBarrier will keep a possible change in content better served
+% and may leave the previous page partially empty.
+\usepackage{placeins}                       % \FloatBarrier
+\usepackage{afterpage}                      % \afterpage{\clearpage}
+
+% Befehle fuer besseres Tabellenlayout
+\usepackage{booktabs}
+
+% umbrechbare Tabellen
+\usepackage{longtable}
+
+% multi cell table
+\usepackage{multirow}
+\usepackage{makecell}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   Biblatex
+
+\usepackage[backend=biber,style=numeric-comp,doi=false,isbn=false,url=false,giveninits=true]{biblatex}
+\bibliography{literature.bib} 
+
+% This is used in the related publications section to insert a link based on the doi
+% Included in literature.bib in title = {}
+% \paperlink{Paper title}{DOI}
+\newcommand*{\paperlink}[2]{\href{http://dx.doi.org/#2}{#1}}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   Author details
+
+\title{Your Lenghty Title Here}
+\author{Your Name}
+\hometown{Your Hometown}
+\homeland{Germany}
+
+% about the degree
+\degreeyear{2018}
+\degreemonth{Month}
+\phdprogram{Ph.D. Programme in Computer Science (PCS)}
+
+% about the university
+\university{Georg-August-Universität Göttingen}
+\universitycity{Göttingen}
+\universitystate{Germany}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   Document start
+
+% Change as needed
+\hypersetup{
+  pdftitle={\title},          %% title
+  pdfauthor={\author},        %% author
+  pdfsubject={Dissertation},  %% subject of the document
+  pdfcreator={\author},       %% creator of the document
+  pdfproducer={\author},      %% producer of the document
+}
 \begin{document}
 
-
-%% Kein Bedarf an unnötigem Titel-Bla-Bla zum jetztigen Zeitpunkt.
-\onlyindraft{
-  \input{vorspann.tex}
+\onlyinfulldocument{
+  \input{frontmatter/coverpage.tex}
+  \input{frontmatter/copyright.tex}
+  \abstractpage
 }
 
 
 \tableofcontents
 
 
-\printglossary[type=\acronymtype,
-               title=List of Acronyms,
-               toctitle=Terms and Abbreviations]
+\onlyinfulldocument{
+  \printglossary[type=\acronymtype,
+      title=List of Acronyms,
+      toctitle=Terms and Abbreviations]
 
-\listoffigures
-\listoftables
+  \listoffigures
+  \listoftables
+
+	\cleardoublepage
+	\acknowledgementpage
+
+  % Publications from frontmatter/publications.tex will not be included in the bibliography!
+	\publicationspage
+}
+\onehalfspace
 
 
 
@@ -106,33 +161,43 @@
 %%%
 %%%              Chapters
 %%%
-\cleardoublepage
+
+\begin{savequote}[75mm]
+Our freedom can be measured by the number of things we can walk away from.
+\qauthor{Source unknown (attributed to Vernon Howard)}
+\end{savequote}
+\chapter{Chapter 1}
+\label{cha:one}
+
 \setcounter{page}{1}
 \pagenumbering{arabic}
-\onehalfspace
+\input{./pages/chapter1.tex}
 
-\input{chapter_one.tex}
-                                             % forced pagebreaks.
-\input{chapter_two.tex}
+\chapter{Chapter 2}
+\label{cha:two}
+\input{./pages/chapter2.tex}
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%
 %%%              Bibliography
 %%%
-%\bibliographystyle{apalike}
+
 %\addcontentsline{toc}{chapter}{References}
-\bibliography{literature}
+% Reduce underful/overful problems
+\setlength{\emergencystretch}{2em}
+\printbibliography[segment=\therefsegment]
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%
 %%%              Appendices
 %%%
-\appendix
+%\appendix
 %\begin{savequote}
 %\end{savequote}
-\chapter*{\vspace*{5cm}Appendices}
+%\chapter*{\vspace*{5cm}Appendices}
 % \refstepcounter{chapter}
 %\input{appendices.tex}
 

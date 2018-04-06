@@ -15,10 +15,11 @@ subdirs:
 	#+make -C methods
 
 dissertation.pdf: *.tex subdirs
-	@n=`cat counter.dat`; let n+=1; echo "$$n" > counter.dat
-	@n=`cat counter.dat`; echo "Build Nr $$n on `date`"; echo " "
+	@c=`cat counter.dat`; let c+=1; echo "$$c" > counter.dat
 	#  -silent
 	latexmk -xelatex dissertation.tex
+	pdfinfo ./dissertation.pdf |  grep --color=NEVER Pages | sed 's/[^0-9]*//' > progress.dat
+	@c=`cat counter.dat`; p=`cat progress.dat`; echo -e "\nPages: $${p}, build nr.: $${c} on `date`\n";
 
 # To make sure that the pdf has fonts in good shape
 # and is reduced in size, use the rewrite rule.

@@ -1,10 +1,3 @@
-\begin{savequote}[75mm]
-Our freedom can be measured by the number of things we can walk away from.
-\qauthor{Source unknown (attributed to Vernon Howard)}
-\end{savequote}
-
-\chapter{One}
-\label{cha:one}
 
 \section{Notes and Acronyms}
 \label{sec:notes-acronyms}
@@ -34,15 +27,17 @@ To cope with the special handling of punctuation, you can help \LaTeX with the x
 \section{Citations}
 \label{sec:citations}
 
-Via bibtex and natbib you can cite as:
+Via biblatex you can cite as:
 
 \begin{itemize}
-  \item \textbackslash cite\{aksoy2012semantic\}: \cite{aksoy2012semantic}
-  \item \textbackslash citep\{aksoy2012semantic\}: \citet{aksoy2012semantic}
-  \item \textbackslash citet\{aksoy2012semantic\}: \citep{aksoy2012semantic}
-  \item \textbackslash citealt\{aksoy2012semantic\}: \citealt{aksoy2012semantic}
-  \item \textbackslash citealp\{aksoy2012semantic\}: \citealp{aksoy2012semantic}
+  \item \textbackslash cite\{reichseerberscheid2018\}: \cite{reichseerberscheid2018}
+  \item \textbackslash textcite\{reichseerberscheid2018\}: \textcite{reichseerberscheid2018}
+  \item \textbackslash fullcite\{reichseerberscheid2018\}: \fullcite{reichseerberscheid2018}
+  \item All other biblatex citation commands.
 \end{itemize}
+
+The bibliography is split into two parts: First, the related publications section, second, everything else.
+Please have a look at the literature.bib file and the entry for the related publications section.
 
 
 \section{Pre-Print Beautification}
