@@ -167,10 +167,10 @@
 % Handle abbreviations properly
 % This is useful for inline enumerations, e.g., an explicit 1. ...
 \RequirePackage{xpunctuate}                 %% Define shortcuts for often used abbreviations
-\newcommand{\ie}{i\xperiod{}e\xperiod{}}
-\newcommand{\eg}{e\xperiod{}g\xperiod{}}
-\newcommand{\etc}{etc\xperiod{}}
-\newcommand{\ff}{ff\xperiod{}}
+\newcommand{\ie}{\xperiodafter{i}\xperiodafter{e}}
+\newcommand{\eg}{\xperiodafter{e}\xperiodafter{g}}
+\newcommand{\etc}{\xperiodafter{etc}}
+\newcommand{\ff}{\xperiodafter{ff}}
 
 % Figure References
 \newcommand{\FigurenameC}{Fig.}
