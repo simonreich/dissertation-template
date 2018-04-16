@@ -167,8 +167,8 @@
 % Handle abbreviations properly
 % This is useful for inline enumerations, e.g., an explicit 1. ...
 \RequirePackage{xpunctuate}                 %% Define shortcuts for often used abbreviations
-\newcommand{\ie}{\xperiodafter{i}\xperiodafter{e}}
-\newcommand{\eg}{\xperiodafter{e}\xperiodafter{g}}
+\newcommand{\ie}{\xperiodafter{i.e}}
+\newcommand{\eg}{\xperiodafter{e.g}}
 \newcommand{\etc}{\xperiodafter{etc}}
 \newcommand{\ff}{\xperiodafter{ff}}
 
