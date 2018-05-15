@@ -105,6 +105,9 @@
 \RequirePackage{polyglossia}
 \setdefaultlanguage{english}
 
+% This is only for biblatex
+\RequirePackage{csquotes}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   PDF-Metadata
 \RequirePackage[bookmarks, 
