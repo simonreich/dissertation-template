@@ -28,7 +28,7 @@ displaymetadata:
 # use this rule to upload the metadata after each build.
 # in the www folder there is a template for a stats homepage.
 upload:
-	@rsync -aPve ssh counterpage.dat countercompile.dat jonas:/var/www/sciencesolutions.eu/htdocs/thesis/
+	@rsync -aPve ssh counterpage.dat countercompile.dat hostname:/var/www/page.de/htdocs/thesis/
 
 subdir:
 	#make subdir
