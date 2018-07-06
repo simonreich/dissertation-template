@@ -83,3 +83,16 @@ Use the dissertation-web-opt.pdf rule to create a version optimised for
 This version is created based on dissertation-rewritten.pdf, therefore it
 should provide nice output on paper.
 
+make short
+==========
+
+This runs xelatex directly and just once, instead of mklatex in silent mode.
+
+make upload
+===========
+
+After each successful  run, the counters are uploaded to a server, defined in 
+the Makefile. If you want to use this feature, add your server here, otherwise
+just remove it from the Makefile. An  example web page is available in the 
+www folder.
+
