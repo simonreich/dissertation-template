@@ -1,49 +1,61 @@
-
-\section{Notes and Acronyms}
-\label{sec:notes-acronyms}
+\section{Little helpers}
 
 
-\TODO{You can add todo notes everywhere,}
-Use acronyms, demonstrate abbreviations... \Gls{one}, \gls{two}, \glspl{one}.
 
-\glsreset{one}
-In case you had quite some distance to the last use of an acronym or start a new chapter, you might want to reintroduce it. Use a reset for this and produce another reference to \gls{one}.
-\REMARK{The notes are only visible in internaldraft mode. This additional mode exists to disambiguate to latex standard draft mode, which will replace pictures by rectangles. Additionally, a time stamp at the bottom helps to sort through revisions.}
+\subsection{Outline}
 
-\begin{figure}[!ht]
-  \centering
-  \includegraphics[width=0.5\textwidth]{figures/UniLogo1.png}
-  \caption{Logo of University Göttingen (1)}
-  \label{fig:logo-1}
-\end{figure}
+Use the outline to structure your sections, chapters, \ldots before writing content:
+
+\begin{outline}
+  There is the free-text outline.
+\end{outline}
+
+\begin{itemoutline}
+\item And of course, for convenience, the itemoutline.
+\item Use it as fits when structuring your thesis
+\item And later replace the bullet points with contents.
+\end{itemoutline}
 
 
-\section{Abbreviations}
-\label{sec:abbreviations}
+
+\subsection{Comments}
+
+Use the comment environment to easily comment out larger sections of text.
+
+\begin{comment}
+  Bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla!
+\end{comment}
+
+
+
+\subsection{Acronyms and Abbreviations}
+Use acronyms, demonstrate abbreviations... \Gls{ac:sec}.
+
+\glsreset{ac:sec}
+In case you had quite some distance to the last use of an acronym or start a new chapter, you might want to reintroduce it. Use a reset for this and produce another reference to \gls{ac:sec}.
 
 To cope with the special handling of punctuation, you can help \LaTeX with the xpunctuate package, \ie, prevent extra spaces after 1\xperiod{}~abbreviation dots which are misinterpreted as the end of the sentence \etc. For example in etc. without the extra markup, which might produce extra space when the line is filled. 2.~After inline enumerations, which might break the sentence-structure with the same over-wide spaces otherwise.
 
+There is \eg, \Eg, \ie \Ie, \etc, and \Etc defined.
 
-\section{Citations}
-\label{sec:citations}
 
-Via biblatex you can cite as:
 
-\begin{itemize}
-  \item \textbackslash cite\{reichseerberscheid2018\}: \cite{reichseerberscheid2018}
-  \item \textbackslash textcite\{reichseerberscheid2018\}: \textcite{reichseerberscheid2018}
-  \item \textbackslash fullcite\{reichseerberscheid2018\}: \fullcite{reichseerberscheid2018}
-  \item All other biblatex citation commands.
-\end{itemize}
+\subsection{Notes}
 
-The bibliography is split into two parts: First, the related publications section, second, everything else.
-Please have a look at the literature.bib file and the entry for the related publications section.
+Notes are only visible in internaldraft mode. 
+This additional mode exists to disambiguate to latex standard draft mode, which will replace pictures by rectangles. 
+Additionally, a time stamp at the bottom helps to sort through revisions.
+
+\TODO{You can add todo notes everywhere,}
+\REMARK{Oh, something is wrong.}
+\NEEDSCITATION{Cite \ldots here}
+
 
 
 \section{Pre-Print Beautification}
 \label{sec:pre-print-beaut}
 
-Only do this if you are sure that nothing changes anymore.\NEEDSCITATION[cite something?]
+Only do this if you are sure that nothing changes anymore.
 
 \begin{enumerate}
 \item Solve all issues (notes, todos, etc.)

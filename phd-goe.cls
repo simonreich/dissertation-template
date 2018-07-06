@@ -53,6 +53,20 @@
   \setboolean{printversion}{true}
 }
 
+% Show compile number on internaldraft
+\newboolean{showcompilenumber}
+\setboolean{showcompilenumber}{false}
+\DeclareOption{showcompilenumber}{%
+  \setboolean{showcompilenumber}{true}
+}
+
+% Show compile number on internaldraft
+\newboolean{showcommitnumber}
+\setboolean{showcommitnumber}{false}
+\DeclareOption{showcommitnumber}{%
+  \setboolean{showcommitnumber}{true}
+}
+
 %% Fallback
 \DeclareOption*{
   \ClassWarning{myclass}{Unknown option '\CurrentOption'}
@@ -64,6 +78,7 @@
 
 % some definitions
 \def\title#1{\gdef\title{#1}}
+\def\stitle#1{\gdef\stitle{#1}}
 \def\author#1{\gdef\author{#1}}
 \def\hometown#1{\gdef\hometown{#1}}
 \def\homeland#1{\gdef\homeland{#1}}
@@ -124,7 +139,7 @@
   pdffitwindow=false,         %% window fit to page when opened
   pdfstartview={Fit},         %% fits the page to the window
   pdfnewwindow=true,          %% links in new window
-  %hidelinks,                  %% for printing: turn link colours off
+  %hidelinks,                  %% for printing: turn link colours off. This is done below via the printversion flag
 }
 
 
@@ -171,8 +186,11 @@
 % This is useful for inline enumerations, e.g., an explicit 1. ...
 \RequirePackage{xpunctuate}                 %% Define shortcuts for often used abbreviations
 \newcommand{\ie}{\xperiodafter{i.e}}
+\newcommand{\Ie}{\xperiodafter{I.e}}
 \newcommand{\eg}{\xperiodafter{e.g}}
+\newcommand{\Eg}{\xperiodafter{E.g}}
 \newcommand{\etc}{\xperiodafter{etc}}
+\newcommand{\Etc}{\xperiodafter{Etc}}
 \newcommand{\ff}{\xperiodafter{ff}}
 
 % Figure References
@@ -186,6 +204,8 @@
 \newcommand{\eqnref}[1]{Eqn.~(\ref{#1})}
 \newcommand{\Secref}[1]{Sec.~\ref{#1}}
 \newcommand{\secref}[1]{Sec.~\ref{#1}}
+\newcommand{\Charef}[1]{Chapter~\ref{#1}}
+\newcommand{\charef}[1]{Chapter~\ref{#1}}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   Colors
@@ -302,7 +322,10 @@
   \onlyindraft{%
     \begin{textblock*}{\paperwidth}(0mm,\paperheight-16mm)%
       \begin{center}%
-        \textit{\footnotesize --- Document rendered on \today{} \currenttime{} #1 --- Build \#\input{counter.dat} ---}%
+        \textit{\footnotesize --- Document rendered on \today{} \currenttime{} #1 ---%
+          \ifthenelse{\boolean{showcompilenumber}} {Build \#\input{countercompile.dat} ---} {}%
+          \ifthenelse{\boolean{showcommitnumber}} {Commit: \#\input{commit.dat} ---} {}%
+        }%
       \end{center}%
     \end{textblock*}%
   }
@@ -321,46 +344,33 @@
 \renewcommand{\coverpagerightmargin}{\mytitlemargin}
 \renewcommand{\coverpagebottommargin}{2\mytitlemargin}
 
+\RequirePackage{geometry}
 
 \renewcommand{\maketitle}{%
+  \newgeometry{top=3cm, bottom=3cm, left=5cm}
   \begin{titlepage}
   %\singlespacing
-  %\thispagestyle{empty}
+  \thispagestyle{empty}
   \begin{flushright}
-  %\vspace*{100pt} 
-%  \vspace*{20pt} 
-  %\vspace*{\fill}
-  \Huge \textcolor{DarkBlue}{\textit{\title}} %\vspace{10pt}
-  \textcolor{Silver}{\rule{\textwidth}{2.0pt}}   
-  ~ \\ %%%
-  \normalsize \normalfont \scshape Dissertation \\ 
-  \vspace{6pt}
-  in order to obtain the doctoral degree\\
-  %in Mathematics and Natural Sciences\\ 
-  "Doctor rerum naturalium" \\
-  %%% \vspace{6pt}
-  of the \university \\
-  \vspace{12pt} %%%
-  \vspace{6pt}
-  in the Doctoral program \\
-  \phdprogram  of\\
-  the Georg-August University School of Science (GAUSS) \\
-  \vspace{24pt}
-  \vspace{4pt} %%%
-  submitted by\\
-  \author\\
-  \vspace{12pt} 
-  of \hometown, \homeland\\
-  (place of birth)\\
-  \vspace{36pt}
-  \vspace*{\fill}
-  \includegraphics[width=30mm]{figures/UniLogo1} \\
-  \vspace{12pt} 
-  \university\\ \universitycity, \universitystate\\
-  \degreemonth\ \degreeyear \\
+	\ifthenelse{\equal{\stitle}{}}{\Huge \textcolor{DarkBlue}{\textit{\title}}}{\Huge \textcolor{DarkBlue}{\textit{\title:\\\stitle}}}
+  \textcolor{Silver}{\rule{\textwidth}{2.0pt}}\\\vspace{24pt}%
+  \normalsize \normalfont \scshape Dissertation \\\vspace{6pt}%
+  in order to obtain the doctoral degree\\%
+  ``Doctor rerum naturalium''\\%
+  of the \university\\\vspace{6pt}%
+  in the Doctoral program\\%
+  \phdprogram\ of\\%
+  the Georg-August University School of Science (GAUSS)\\\vspace*{\fill}%
+  submitted by\\%
+  \author\\\vspace{6pt} %
+  of \hometown, \homeland\\%
+  (place of birth)\\\vspace*{\fill}%
+  \includegraphics[width=30mm]{figures/UniLogo1}\\\vspace{12pt}%
+  \university\\ \universitycity, \universitystate\\%
+  \degreemonth\ \degreeyear \\%
   \end{flushright}
-  %\vspace*{\fill}
   \end{titlepage}
+  \restoregeometry
 }
 
 \newcommand{\abstractpage}{
@@ -373,7 +383,7 @@
   \vspace*{-28mm}
   \begin{center}
   \vspace*{1pt} % \huge
-  \LARGE \textcolor{DarkBlue}{\textit{\title}} \\
+	\ifthenelse{\equal{\stitle}{}}{\LARGE \textcolor{DarkBlue}{\textit{\title}}}{\LARGE \textcolor{DarkBlue}{\textit{\title: \stitle}}}\\
   %\vspace*{15pt}
   \vspace*{9pt}
   \Large \scshape Abstract \\ \normalfont \rmfamily
@@ -392,9 +402,17 @@
 
 \newcommand{\publicationspage}{
 	\onehalfspace
-  \chapter*{List of Related Publications}
-	\markboth{List of Related Publications}{}
+  \chapter*{List of related publications}
+	\markboth{List of related publications}{}
   \input{./frontmatter/publications.tex}
+  \newrefsection
+}
+
+\newcommand{\contributionspage}{
+	\onehalfspace
+  \chapter*{Contributions}
+	\markboth{Contributions}{}
+  \input{./frontmatter/contributions.tex}
   \newrefsection
 }
 

@@ -1,0 +1,47 @@
+\section{Towards a cool thesis}
+\label{sec:towardsacoolthesis}
+
+
+
+\subsection{Citation}
+
+The template uses biber as backend.
+Via biblatex you can cite as:
+
+\begin{itemize}
+  \item \textbackslash cite\{reichseerberscheid2018\}: \cite{reichseerberscheid2018}
+  \item \textbackslash textcite\{reichseerberscheid2018\}: \textcite{reichseerberscheid2018}
+  \item \textbackslash fullcite\{reichseerberscheid2018\}: \fullcite{reichseerberscheid2018}
+  \item All other biblatex citation commands.
+\end{itemize}
+
+The file frontmatter/publications.tex lists your related publications.
+Here, it is best to create two entries of your papers: One that you cite in your text.
+\Eg The study of \cite{reichseerberscheid2018} lacks a quantitative evaluation and should have never been accepted.
+In this wora,k it is shown that the method presented performs well on any arbitrary data set and outperform all current state-of-the art methods.
+Second, create a bibtex entry of your paper for your publications list.
+You can mark your name in bold text, add a doi-link in the title (or wherever), and show all the authors.
+Please have a look at the provided example literature.bib and frontmatter/publications.tex files.
+
+
+
+\subsection{Figures, floats, and references}
+
+You can reference figures via \figref{fig:logo-2}.
+\Figref{fig:logo-2} is at the beginning of sentences.
+Use \tabref{}, \Tabref{}, \eqnref{}, \Eqnref{}, \secref{}, \Secref{}, \charef{}, and \Charef{} accordingly.
+
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[width=\textwidth]{figures/UniLogo1.png}
+  \caption{Logo of University Göttingen (2)}
+  \label{fig:logo-2}
+\end{figure}
+
+%%% Local Variables:
+%%% ispell-local-dictionary: "en_US"
+%%% coding: utf-8
+%%% mode: latex
+%%% TeX-master: "dissertation"
+%%% TeX-engine: xetex
+%%% End:
