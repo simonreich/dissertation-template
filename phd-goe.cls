@@ -354,15 +354,15 @@
   \begin{flushright}
 	\ifthenelse{\equal{\stitle}{}}{\Huge \textcolor{DarkBlue}{\textit{\title}}}{\Huge \textcolor{DarkBlue}{\textit{\title:\\\stitle}}}
   \textcolor{Silver}{\rule{\textwidth}{2.0pt}}\\\vspace{24pt}%
-  \normalsize \normalfont \scshape Dissertation \\\vspace{6pt}%
+  \normalsize \scshape Dissertation \\\vspace{12pt}%
   in order to obtain the doctoral degree\\%
   ``Doctor rerum naturalium''\\%
-  of the \university\\\vspace{6pt}%
+  of the \university\\\vspace{12pt}%
   in the Doctoral program\\%
   \phdprogram\ of\\%
   the Georg-August University School of Science (GAUSS)\\\vspace*{\fill}%
   submitted by\\%
-  \author\\\vspace{6pt} %
+  \author\\\vspace{12pt} %
   of \hometown, \homeland\\%
   (place of birth)\\\vspace*{\fill}%
   \includegraphics[width=30mm]{figures/UniLogo1}\\\vspace{12pt}%
