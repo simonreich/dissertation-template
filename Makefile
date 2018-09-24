@@ -12,7 +12,7 @@ MAKEFLAGS += --no-print-directory
 
 default: dissertation.pdf
 
-all: dissertation.pdf
+all: dissertation.pdf web print
 
 # This will create some additional metadata and store them to file.
 metadata:
@@ -28,7 +28,7 @@ displaymetadata:
 # use this rule to upload the metadata after each build.
 # in the www folder there is a template for a stats homepage.
 upload:
-	@rsync -aPve ssh counterpage.dat countercompile.dat hostname:/var/www/page.de/htdocs/thesis/
+	#@rsync -aPve ssh counterpage.dat countercompile.dat servername:/var/www/example.com/htdocs/thesis/
 
 subdir:
 	#make subdir
@@ -43,16 +43,15 @@ dissertation.pdf: *.tex subdir
 # and is reduced in size, use the rewrite rule.
 # As the difference is not relevant on-screen,
 # this rule should be used to create pdfs for printing.
-# Create a make print rule, if you want to.
-dissertation-rewritten.pdf: dissertation.pdf
-	gs  -sFONTPATH=/usr/share/fonts:/usr/share/texmf-dist/fonts  -o dissertation-rewritten.pdf  -sDEVICE=pdfwrite  -dPDFSETTINGS=/prepress  dissertation.pdf
+print: dissertation.pdf
+	gs  -sFONTPATH=/usr/share/fonts:/usr/share/texmf-dist/fonts  -o dissertation_print.pdf  -sDEVICE=pdfwrite  -dPDFSETTINGS=/prepress  dissertation.pdf
 
 # Linearisation, e.g., optimisation for "fast web view"
 # Needed, for example, when submitting to SUB eDiss (Göttingen)
 # The linearisation ensures that a display of partially downloaded
 # pdfs is possible.
-dissertation-web-opt.pdf: dissertation-rewritten.pdf
-	qpdf --linearize dissertation-rewritten.pdf dissertation-web-opt.pdf
+web: dissertation.pdf
+	qpdf --linearize dissertation.pdf dissertation_web.pdf
 
 short: *tex
 	xelatex dissertation.tex
