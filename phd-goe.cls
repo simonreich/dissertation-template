@@ -158,12 +158,6 @@
 \setsansfont[Mapping=tex-text, Numbers=OldStyle]{Lato}
 \setmonofont[Mapping=tex-text]{Source Code Pro}
 
-% Large chapter numbers
-\RequirePackage{fix-cm}
-\RequirePackage{titlesec}
-\newcommand{\hsp}{\hspace{0pt}}
-\titleformat{\chapter}[hang]{\flushright\fontseries{b}\fontsize{80}{100}\selectfont}{\fontseries{b}\fontsize{100}{130}\selectfont\textcolor{gray75}{\thechapter}\hsp}{0pt}{\break\Huge\bfseries}[]
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   Layout-Tuning
 
