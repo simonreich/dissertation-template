@@ -98,12 +98,14 @@
 % documentation -> lb2-ch4.pdf
 % http://www.webmasterpro.de/design/article/typografie-12-wichtige-grundlagen-fuer-den-richtigen-einsatz-von-schriften.html
 %% Load base
-\LoadClass[
+% If in print, use two-sided, else one-sided
+\ifthenelse{\boolean{printversion}} {%
+  \LoadClass[
     xetex,
     a4paper,
     fleqn,                      %% flush left equations
     12pt,
-    % twoside,openright,        %% two sided (book), open chapters on the right hand side
+    twoside,openright,        %% two sided (book), open chapters on the right hand side
     % twocolumn,
     BCOR10mm, DIV=calc,         %% 10mm for binding, keep around 12 words/line
     % DIV=classic,
@@ -112,8 +114,24 @@
     titlepage=firstiscover,
     parskip=half,
     english
-]{scrbook}
-
+  ]{scrbook}
+} {%
+  \LoadClass[
+    xetex,
+    a4paper,
+    fleqn,                      %% flush left equations
+    12pt,
+    oneside,openright,        %% two sided (book), open chapters on the right hand side
+    % twocolumn,
+    BCOR10mm, DIV=calc,         %% 10mm for binding, keep around 12 words/line
+    % DIV=classic,
+    % titlepage,
+    % draft
+    titlepage=firstiscover,
+    parskip=half,
+    english
+  ]{scrbook}
+}%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   Language Selection
 % Language selection for XeLaTeX (replaces babel)
@@ -346,7 +364,7 @@
   %\singlespacing
   \thispagestyle{empty}
   \begin{flushright}
-	\ifthenelse{\equal{\stitle}{}}{\Huge \textcolor{DarkBlue}{\textit{\title}}}{\Huge \textcolor{DarkBlue}{\textit{\title:\\\stitle}}}
+  \ifthenelse{\equal{\stitle}{}}{\Huge \textcolor{DarkBlue}{\textit{\title}}}{\Huge \textcolor{DarkBlue}{\textit{\title:\\\stitle}}}
   \textcolor{Silver}{\rule{\textwidth}{2.0pt}}\\\vspace{24pt}%
   \normalsize \scshape Dissertation \\\vspace{12pt}%
   in order to obtain the doctoral degree\\%
@@ -377,7 +395,7 @@
   \vspace*{-28mm}
   \begin{center}
   \vspace*{1pt} % \huge
-	\ifthenelse{\equal{\stitle}{}}{\LARGE \textcolor{DarkBlue}{\textit{\title}}}{\LARGE \textcolor{DarkBlue}{\textit{\title: \stitle}}}\\
+  \ifthenelse{\equal{\stitle}{}}{\LARGE \textcolor{DarkBlue}{\textit{\title}}}{\LARGE \textcolor{DarkBlue}{\textit{\title: \stitle}}}\\
   %\vspace*{15pt}
   \vspace*{9pt}
   \Large \scshape Abstract \\ \normalfont \rmfamily
@@ -388,24 +406,24 @@
 }
 
 \newcommand{\acknowledgementpage}{
-	\onehalfspace
+  \onehalfspace
   \chapter*{Acknowledgments}
-	\markboth{Acknowledgments}{}
+  \markboth{Acknowledgments}{}
   \input{./frontmatter/acknowledgments.tex}
 }
 
 \newcommand{\publicationspage}{
-	\onehalfspace
+  \onehalfspace
   \chapter*{List of related publications}
-	\markboth{List of related publications}{}
+  \markboth{List of related publications}{}
   \input{./frontmatter/publications.tex}
   \newrefsection
 }
 
 \newcommand{\contributionspage}{
-	\onehalfspace
+  \onehalfspace
   \chapter*{Contributions}
-	\markboth{Contributions}{}
+  \markboth{Contributions}{}
   \input{./frontmatter/contributions.tex}
   \newrefsection
 }
